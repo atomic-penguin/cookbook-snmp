@@ -31,6 +31,16 @@ if not node['snmp']['cookbook_files'].empty?
   end
 end
 
+case node['platform_family']
+  when "debian", "ubuntu"
+    template "/etc/default/snmpd" do
+      source "snmpd.erb"
+      mode 0644
+      owner "root"
+      group "root"
+    end
+end
+
 service node['snmp']['service'] do
   action [ :start, :enable ]
 end
