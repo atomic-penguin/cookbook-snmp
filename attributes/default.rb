@@ -21,9 +21,9 @@ case node['platform_family']
   when "rhel"
     set['snmp']['packages'] = ["net-snmp", "net-snmp-utils"]
     set['snmp']['cookbook_files'] = Array.new
-  when "debian"
+  when "debian", "ubuntu"
     set['snmp']['packages'] = ["snmp", "snmpd"]
-    set['snmp']['cookbook_files'] = ["/etc/default/snmpd"]
+    set['snmp']['cookbook_files'] = Array.new
   when "suse"
     set['snmp']['packages'] = ["net-snmp"]
     set['snmp']['cookbook_files'] = Array.new
@@ -44,3 +44,14 @@ default['snmp']['full_systemview'] = false
 default['snmp']['trapcommunity'] = "public"
 default['snmp']['trapsinks'] = Array.new
 default['snmp']['is_dnsserver'] = false
+
+default['snmp']['snmpd']['mibdirs'] = "/usr/share/snmp/mibs"
+default['snmp']['snmpd']['snmpd_run'] = "yes"
+default['snmp']['snmpd']['snmpd_opts'] = "-Lsd -Lf /dev/null -u snmp -g snmp -I -smux -p /var/run/snmpd.pid"
+default['snmp']['snmpd']['trapd_run'] = "no"
+default['snmp']['snmpd']['trapd_opts'] = "-Lsd -p /var/run/snmptrapd.pid"
+default['snmp']['snmpd']['snmpd_compat'] = "yes"
+
+default['snmp']['snmptrapd']['traphandle'] = "default /usr/sbin/snmptthandler"
+default['snmp']['snmptrapd']['disableAuthorization'] = "yes"
+default['snmp']['snmptrapd']['donotlogtraps'] = "yes"

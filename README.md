@@ -60,6 +60,27 @@ these following attributes to best suit your own environment.
      snmpwalk.  However, if you're running SNMP Network Management System,
      you'll want to override this as "true" on your systems.
 
+* snmp['snmpd']['mibdirs']
+  - MIB directories.  "/usr/share/snmp/mibs" is the default
+
+* snmp['snmpd']['snmpd_run']
+  - snmpd control (default of "yes" means start daemon)
+
+* snmp]['snmpd']['snmpd_opts']
+  - snmpd options
+
+* snmp['snmpd']['trapd_run']
+  - snmptrapd control (default of "no" means do not start daemon)
+    master agentx support must be enabled in snmpd before snmptrapd
+    can be run.  See snmpd.conf(5) for how to do this.
+
+* snmp['snmpd']['trapd_opts']
+  - snmptrapd options
+
+* snmp['snmpd']['snmpd_compat']
+  - Create symlink on Debian legacy location to official RFC path
+    Default is "yes".
+
 ## USAGE
 
 Here is a full example featuring all the overridable attributes.

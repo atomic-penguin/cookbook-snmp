@@ -82,6 +82,10 @@ trapsink <%= trapsink %>
 <% end %>
 <% end %>
 
+<% if node['snmp']['snmpd']['trapd_run'] == "yes" %>
+master agentx
+<% end %>
+
 <% if node['snmp']['is_dnsserver'] %>
 ###############################################################################
 # Extend Section
