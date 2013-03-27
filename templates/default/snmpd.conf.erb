@@ -60,9 +60,11 @@ syscontact <%= node['snmp']['syscontact'] %>
 # Added for support of bcm5820 cards.
 pass .1.3.6.1.4.1.4413.4.1 /usr/bin/ucd5820stat
 
+<% unless node['dmi'] %>
 <% if node['dmi']['system']['manufacturer'] =~ /dell/i %>
 # Allow Systems Management Data Engine SNMP to connect to snmpd using SMUX
 smuxpeer .1.3.6.1.4.1.674.10892.1
+<% end %>
 <% end %>
 
 <% if File.exists?("/usr/lib64/libcmaX64.so") %>
