@@ -84,6 +84,35 @@ these following attributes to best suit your own environment.
   - Create symlink on Debian legacy location to official RFC path
     Default is "yes".
 
+default['snmp']['disman_events']['enable'] = false
+default['snmp']['disman_events']['user'] = "disman_events"
+default['snmp']['disman_events']['password'] = "disman_password"
+default['snmp']['disman_events']['linkUpDownNotifications'] = "yes"
+default['snmp']['disman_events']['defaultMonitors'] = "yes"
+default['snmp']['disman_events']['monitors'] = Array.new
+
+* snmp['disman_events']['enable']
+  - Boolean value for enabling DisMan Event MIB configuration
+    Default is false.
+
+* snmp['disman_events']['user'] and snmp['disman_events']['password']
+  - String values for SNMPv3 credentials to set for the DisMan Event MIB
+    to work.
+
+* snmp['disman_events']['linkUpDownNotifications']
+  - String value which must be "yes" or "no" to enable traps for link
+    state change notifications.
+    Default is "yes".
+
+* snmp['disman_events']['defaultMonitors']
+  - String value which must be "yes" or "no" to enable traps for the
+    DisMan Event MIB default checks. See the snmpd.conf manual for details.
+    Default is "yes".
+
+* snmp['disman_events']['monitors']
+  - Array of string values for additional 'monitor' config entries.
+    Default is an empty array.
+
 ## USAGE
 
 Here is a full example featuring all the overridable attributes.

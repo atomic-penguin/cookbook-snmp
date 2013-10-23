@@ -40,6 +40,12 @@ default['snmp']['full_systemview'] = false
 default['snmp']['trapcommunity'] = "public"
 default['snmp']['trapsinks'] = Array.new
 default['snmp']['is_dnsserver'] = false
+default['snmp']['disman_events']['enable'] = false
+default['snmp']['disman_events']['user'] = "disman_events"
+default['snmp']['disman_events']['password'] = "disman_password"
+default['snmp']['disman_events']['linkUpDownNotifications'] = "yes"
+default['snmp']['disman_events']['defaultMonitors'] = "yes"
+default['snmp']['disman_events']['monitors'] = Array.new
 
 # Debian default file options
 default['snmp']['snmpd']['mibdirs'] = "/usr/share/snmp/mibs"

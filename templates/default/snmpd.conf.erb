@@ -100,3 +100,21 @@ extend bindNxdomain /usr/local/bin/snmp_rndc_stats.pl --nxdomain
 extend bindRecursion /usr/local/bin/snmp_rndc_stats.pl --recursion
 extend bindFailure /usr/local/bin/snmp_rndc_stats.pl --failure
 <% end %>
+
+<% if node['snmp']['disman_events']['enable'] %>
+###############################################################################
+# DisMan Event MIB
+#
+#  See the snmpd.conf manual page.
+
+createUser <%= node['snmp']['disman_events']['user'] %> MD5 <%= node['snmp']['disman_events']['password'] %>
+rouser <%= node['snmp']['disman_events']['user'] %> auth
+agentSecName <%= node['snmp']['disman_events']['user'] %>
+linkUpDownNotifications <%= node['snmp']['disman_events']['linkUpDownNotifications'] %>
+defaultMonitors <%= node['snmp']['disman_events']['defaultMonitors'] %>
+<% unless node['snmp']['disman_events']['monitors'].empty? %>
+<% node['snmp']['disman_events']['monitors'].each do |monitor_entry| %>
+monitor <%= monitor_entry %>
+<% end %>
+<% end %>
+<% end %>
