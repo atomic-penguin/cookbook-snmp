@@ -72,6 +72,13 @@ these following attributes to best suit your own environment.
 * snmp]['snmpd']['snmpd_opts']
   - snmpd options
 
+* snmp['process_monitoring']['proc']
+  - Array of processes to monitor. This is an empty array by default.
+
+* snmp['process_monitoring']['procfix']
+  - Array of procfix lines to configure. This is an empty array by default.
+  - These are run when a monitored process is in an error state.
+
 * snmp['snmpd']['trapd_run']
   - snmptrapd control (default of "no" means do not start daemon)
     master agentx support must be enabled in snmpd before snmptrapd

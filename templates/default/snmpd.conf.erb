@@ -74,6 +74,21 @@ rocommunity <%= node['snmp']['community'] %> 127.0.0.1
 <% end %>
 
 ###############################################################################
+# Process monitoring
+#
+#  See the snmpd.conf manual page, and the output of "snmpd -H".
+<% unless node['snmp']['process_monitoring']['proc'].empty? %>
+<% node['snmp']['process_monitoring']['proc'].each do |proc_entry| %>
+proc <%= proc_entry %>
+<% end %>
+<% end %>
+<% unless node['snmp']['process_monitoring']['procfix'].empty? %>
+<% node['snmp']['process_monitoring']['procfix'].each do |procfix_entry| %>
+procfix <%= procfix_entry %>
+<% end %>
+<% end %>
+
+###############################################################################
 # Trap communities and trapsinks
 #
 #  See the snmpd.conf manual page, and the output of "snmpd -H".
