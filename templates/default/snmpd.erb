@@ -3,6 +3,9 @@
 # MIB directories.  /usr/share/snmp/mibs is the default, but
 # including it here avoids some strange problems.
 export MIBDIRS=<%= node['snmp']['snmpd']['mibdirs'] %>
+<% unless node['snmp']['snmpd']['mibs'].nil? -%>
+export MIBS=<%= node['snmp']['snmpd']['mibs'] %>
+<% end -%>
 
 # snmpd control (yes means start daemon).
 SNMPDRUN=<%= node['snmp']['snmpd']['snmpd_run'] %>

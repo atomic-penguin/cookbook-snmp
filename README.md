@@ -66,6 +66,10 @@ these following attributes to best suit your own environment.
 * snmp['snmpd']['mibdirs']
   - MIB directories.  "/usr/share/snmp/mibs" is the default
 
+* snmp['snmpd']['mibs']
+  - MIBs to load.  The default is not to set any and is therefore dependant
+     on the daemon default.
+
 * snmp['snmpd']['snmpd_run']
   - snmpd control (default of "yes" means start daemon)
 
