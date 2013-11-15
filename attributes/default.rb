@@ -40,6 +40,9 @@ default['snmp']['full_systemview'] = false
 default['snmp']['trapcommunity'] = "public"
 default['snmp']['trapsinks'] = Array.new
 default['snmp']['is_dnsserver'] = false
+default['snmp']['include_all_disks'] = false
+default['snmp']['all_disk_min'] = 100    # 100K
+default['snmp']['disks'] = Array.new
 
 # Debian default file options
 default['snmp']['snmpd']['mibdirs'] = "/usr/share/snmp/mibs"

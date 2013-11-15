@@ -74,6 +74,23 @@ rocommunity <%= node['snmp']['community'] %> 127.0.0.1
 <% end %>
 
 ###############################################################################
+# Disk Checks
+#
+# 
+# When compiled with the ucd-snmp/disk module (included by default),
+# the snmp agent can check the amount of available disk space and
+# make sure it is above a set limit.
+
+<% if node['snmp']['include_all_disks'] %>
+includeAllDisks <%= node['snmp']['all_disk_min'] %>
+<% end %>
+<% unless node['snmp']['disks'].empty? %>
+<% node['snmp']['disks'].each do |disk| %>
+disk <%= disk['mount'] %> <%= disk['min'] %>
+<% end %>
+<% end %>
+
+###############################################################################
 # Trap communities and trapsinks
 #
 #  See the snmpd.conf manual page, and the output of "snmpd -H".
@@ -89,6 +106,7 @@ master agentx
 <% end %>
 
 <% if node['snmp']['is_dnsserver'] %>
+
 ###############################################################################
 # Extend Section
 #

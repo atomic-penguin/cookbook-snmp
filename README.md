@@ -63,6 +63,24 @@ these following attributes to best suit your own environment.
      snmpwalk.  However, if you're running SNMP Network Management System,
      you'll want to override this as "true" on your systems.
 
+* snmp[:include\_all\_disks]
+  - Boolean to include disk usage checks for all filesystems.
+    Default is "false"
+
+* snmp[:all\_disk\_min]
+  - Number of bytes that should be free on each disk when :include\_all\_disks 
+    is 'true.'  Can also be expressed as a string specifying a minimum percent
+    e.g. "10%".
+    Default is 100 (100kB) which is the normal snmpd default.
+
+* snmp[:disks]
+  - Specify individual disks to monitor or, if monitoring all disks, specify 
+    different minimums.  If set, the template expects this to be an 
+    array of hashes specifying the mount point of the disk to monitor and
+    the minimum threshold in the form of {:mount => '/', :min => 100000}.
+    As with :all\_disk\_min, :min can also be expressed as a percent.
+    Default is an empty array.
+
 * snmp['snmpd']['mibdirs']
   - MIB directories.  "/usr/share/snmp/mibs" is the default
 
@@ -93,6 +111,7 @@ You can apply these override attributes in a role, or node context.
   override_attributes "snmp" => {
     "community" => "secret",
     "full_systemview" => true,
+    "disks" => [{:mount => "/", :min => "10%"}],
     "trapsinks" => [ "zenoss.example.com", "nagios.example.com" ],
     "syslocationPhysical" => "Server Room",
     "syslocationVirtual" => "Cloud - Virtual Pool",
