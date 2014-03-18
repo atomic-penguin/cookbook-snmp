@@ -104,6 +104,21 @@ disk <%= disk['mount'] %> <%= disk['min'] %>
   <% end %>
 <% end %>
 
+# Load Average Checks
+#
+# load [1MAX=DEFMAXLOADAVE] [5MAX=DEFMAXLOADAVE] [15MAX=DEFMAXLOADAVE]
+#
+# 1MAX:   If the 1 minute load average is above this limit at query
+#         time, the errorFlag will be set.
+# 5MAX:   Similar, but for 5 min average.
+# 15MAX:  Similar, but for 15 min average.
+
+<% unless node['snmp']['load_average'].empty? %>
+  <% node['snmp']['load_average'].each do |load| %>
+load <%= load['max1'] %> <%= load['max5'] %> <%= load['max15'] %>
+  <% end %>
+<% end %>
+
 ###############################################################################
 # Trap communities and trapsinks
 #

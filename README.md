@@ -81,6 +81,13 @@ these following attributes to best suit your own environment.
     As with :all\_disk\_min, :min can also be expressed as a percent.
     Default is an empty array.
 
+* snmp[:load_average]
+  - monitors the load average of the local system, specifying thresholds for the
+    1-minute, 5-minute and 15-minute averages. If set, the template expects this to be an
+    array of hashes specifying the mount point of the disk to monitor and
+    the minimum threshold in the form of { :max1 => '12', :max5 => '14', :max15 => '14'}.
+    Default is an empty array.
+
 * snmp['snmpd']['mibdirs']
   - MIB directories.  "/usr/share/snmp/mibs" is the default
 
@@ -152,6 +159,7 @@ You can apply these override attributes in a role, or node context.
     "community" => "secret",
     "full_systemview" => true,
     "disks" => [{:mount => "/", :min => "10%"}],
+    "load_average" => [{:max1 => "12", :max5 => "18"}],
     "trapsinks" => [ "zenoss.example.com", "nagios.example.com" ],
     "syslocationPhysical" => "Server Room",
     "syslocationVirtual" => "Cloud - Virtual Pool",
