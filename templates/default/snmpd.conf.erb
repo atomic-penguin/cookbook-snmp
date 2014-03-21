@@ -119,18 +119,14 @@ trapsink <%= trapsink %>
 master agentx
 <% end %>
 
-<% if node['snmp']['is_dnsserver'] %>
-
 ###############################################################################
 # Extend Section
 #
-# extend example to collect DNS RNDC stats
-extend bindSuccess /usr/local/bin/snmp_rndc_stats.pl --success
-extend bindReferral /usr/local/bin/snmp_rndc_stats.pl --referral
-extend bindNxrrset /usr/local/bin/snmp_rndc_stats.pl --nxrrset
-extend bindNxdomain /usr/local/bin/snmp_rndc_stats.pl --nxdomain
-extend bindRecursion /usr/local/bin/snmp_rndc_stats.pl --recursion
-extend bindFailure /usr/local/bin/snmp_rndc_stats.pl --failure
+#
+<% unless node['snmp']['extend_scripts'].empty? %>
+  <% node['snmp']['extend_scripts'].each do |name, cmd| %>
+extend <%= name %> <%= cmd %>
+  <% end %>
 <% end %>
 
 <% if node['snmp']['disman_events']['enable'] %>

@@ -81,6 +81,11 @@ these following attributes to best suit your own environment.
     As with :all\_disk\_min, :min can also be expressed as a percent.
     Default is an empty array.
 
+* snmp[:extend_scripts]
+  - An array that specifies extension scripts to the SMP daemon. If set, the template 
+    will place these name => value pairs in the "Extend" section of the snmpd.conf file.
+    The array must be in the format of { 'foo' => '/path/to/foo -arg', 'bar' => '/path/to/bar' }
+
 * snmp['snmpd']['mibdirs']
   - MIB directories.  "/usr/share/snmp/mibs" is the default
 

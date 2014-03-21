@@ -51,6 +51,7 @@ default['snmp']['disman_events']['monitors'] = []
 default['snmp']['include_all_disks'] = false
 default['snmp']['all_disk_min'] = 100    # 100K
 default['snmp']['disks'] = []
+default['snmp']['extend_scripts'] = {}
 
 # Debian default file options
 default['snmp']['snmpd']['mibdirs'] = '/usr/share/snmp/mibs'
