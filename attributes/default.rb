@@ -33,6 +33,8 @@ end
 default['snmp']['service'] = 'snmpd'
 
 default['snmp']['community'] = 'public'
+default['snmp']['sources'] = ['default']
+default['snmp']['sources6'] = ['default']
 default['snmp']['syslocationVirtual'] = 'Virtual Server'
 default['snmp']['syslocationPhysical'] = 'Server Room'
 default['snmp']['syscontact'] = 'Root <root@localhost>'

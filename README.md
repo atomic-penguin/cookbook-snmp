@@ -27,6 +27,12 @@ these following attributes to best suit your own environment.
 * `snmp['community']`
   - SNMP Community String, default is "public".
 
+* `snmp['sources']`
+  - Array of Source IPv4 or Networks to allow Access from 
+
+* `snmp['sources6']`
+  - Array of Source IPv6 or Networks to allow Access from 
+
 * `snmp['trapcommunity']`
   - SNMP Community Trap String, default is "public".
 
