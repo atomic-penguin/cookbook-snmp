@@ -56,7 +56,7 @@ these following attributes to best suit your own environment.
   - Boolean to include disk usage checks for all filesystems.
     Default is "false"
 
-* `snmp['all_disk_min]`
+* `snmp['all_disk_min']`
   - Number of bytes that should be free on each disk when :include\_all\_disks 
     is 'true.'  Can also be expressed as a string specifying a minimum percent
     e.g. "10%".
@@ -92,7 +92,7 @@ these following attributes to best suit your own environment.
 * `snmp['snmpd']['snmpd_run']`
   - snmpd control (default of "yes" means start daemon)
 
-* `snmp]['snmpd']['snmpd_opts']`
+* `snmp['snmpd']['snmpd_opts']`
   - snmpd options
 
 * `snmp['process_monitoring']['proc']`
