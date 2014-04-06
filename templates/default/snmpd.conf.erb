@@ -114,9 +114,8 @@ disk <%= disk['mount'] %> <%= disk['min'] %>
 # 15MAX:  Similar, but for 15 min average.
 
 <% unless node['snmp']['load_average'].empty? %>
-  <% node['snmp']['load_average'].each do |load| %>
+<% load = node['snmp']['load_average'] %>
 load <%= load['max1'] %> <%= load['max5'] %> <%= load['max15'] %>
-  <% end %>
 <% end %>
 
 ###############################################################################

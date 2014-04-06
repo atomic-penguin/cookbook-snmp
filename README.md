@@ -72,10 +72,10 @@ these following attributes to best suit your own environment.
 
 * `snmp['load_average']`
   - monitors the load average of the local system, specifying thresholds for the
-    1-minute, 5-minute and 15-minute averages. If set, the template expects this to be an
-    array of hashes specifying the mount point of the disk to monitor and
-    the minimum threshold in the form of { :max1 => '12', :max5 => '14', :max15 => '14'}.
-    Default is an empty array.
+    1-minute, 5-minute and 15-minute averages.
+    If set, the template expects this to be a hash specifying the minimum
+    threshold in the form of { :max1 => '12', :max5 => '14', :max15 => '14'}.
+    Default is nil
 
 * `snmp['extend_scripts']`
   - A hash that specifies extension scripts to the SNMP daemon. If set, the template
