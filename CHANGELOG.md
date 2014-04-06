@@ -12,7 +12,7 @@ Breaking changes:
   @themoore
   * Remove hardcoded extend scripts and is_dnsserver boolean.
   * Remove perl dependency.
-  * Added extend_scripts hash for greater flexibility. # 21
+  * Added extend_scripts hash for greater flexibility. #21
 
 v1.1.0
 ------
@@ -22,7 +22,7 @@ v1.1.0
 
   @odyssey4me contributed:
   * Array `snmp['snmpd']['mibs']` to specify list of MIBs to load #12
-  * Arrays `snmp['process_monitory']['proc']` and `snmp['process_monitoring']['proxfix']
+  * Arrays `snmp['process_monitory']['proc']` and `snmp['process_monitoring']['procfix']
     for monitoring process table and corrective procfix commands. #13
   * Attributes `snmp['disman_events']` for SNMP Distributed Management #14
 
