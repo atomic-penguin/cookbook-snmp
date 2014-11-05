@@ -63,3 +63,6 @@ default['snmp']['snmpd']['snmpd_opts'] = '-Lsd -Lf /dev/null -u snmp -g snmp -I 
 default['snmp']['snmpd']['trapd_run'] = 'no'
 default['snmp']['snmpd']['trapd_opts'] = '-Lsd -p /var/run/snmptrapd.pid'
 default['snmp']['snmpd']['snmpd_compat'] = 'yes'
+
+# config file options
+default['snmp']['config_permissions'] = 0644

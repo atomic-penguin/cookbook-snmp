@@ -22,7 +22,7 @@ node['snmp']['packages'].each do |snmppkg|
 end
 
 template '/etc/default/snmpd' do
-  mode 0644
+  mode node['snmp']['config_permissions']
   owner 'root'
   group 'root'
   only_if { node['platform_family'] == 'debian' }
@@ -33,7 +33,7 @@ service node['snmp']['service'] do
 end
 
 template '/etc/snmp/snmpd.conf' do
-  mode 0644
+  mode node['snmp']['config_permissions']
   owner 'root'
   group 'root'
   notifies :restart, "service[#{node['snmp']['service']}]"
