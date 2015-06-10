@@ -25,7 +25,7 @@ Notable overridable attributes are as follows.  It is recommended to override
 these following attributes to best suit your own environment.
 
 * `snmp['agentAddress']`
-  - SNMP Listening address, default is UDP port 161 on all interfaces. See `man 8 snmpd`,
+  - SNMP Listening address, default is "udp:161". See `man 8 snmpd`,
     section LISTENING ADDRESSES for further details.
 
 * `snmp['community']`
