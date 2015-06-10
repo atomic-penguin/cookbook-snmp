@@ -32,6 +32,7 @@ end
 # redhat, centos, fedora, scientific, debian, ubuntu
 default['snmp']['service'] = 'snmpd'
 
+default['snmp']['agentAddress'] = 'udp:161'
 default['snmp']['community'] = 'public'
 default['snmp']['sec_name'] = { 'notConfigUser' => %w(default) }
 default['snmp']['sec_name6'] = { 'notConfigUser' => %w(default) }

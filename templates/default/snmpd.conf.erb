@@ -8,7 +8,7 @@
 ###############################################################################
 #
 
-agentAddress udp:161<% if node.key?('ip6address') -%>,udp6:161<% end -%>
+agentAddress <%= node['snmp']['agentAddress'] %><% if node.key?('ip6address') -%>,udp6:161<% end -%>
 
 ###############################################################################
 # Access Control
