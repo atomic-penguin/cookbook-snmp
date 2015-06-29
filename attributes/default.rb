@@ -60,6 +60,8 @@ default['snmp']['extend_scripts'] = {}
 # Debian default file options
 default['snmp']['snmpd']['mibdirs'] = '/usr/share/snmp/mibs'
 default['snmp']['snmpd']['mibs'] = nil
+default['snmp']['snmpd']['pass'] = {}
+default['snmp']['snmpd']['pass_persist'] = {}
 default['snmp']['snmpd']['snmpd_run'] = 'yes'
 default['snmp']['snmpd']['snmpd_opts'] = '-Lsd -Lf /dev/null -u snmp -g snmp -I -smux -p /var/run/snmpd.pid'
 default['snmp']['snmpd']['trapd_run'] = 'no'

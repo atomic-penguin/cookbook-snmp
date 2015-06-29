@@ -109,6 +109,12 @@ these following attributes to best suit your own environment.
   - MIBs to load.  The default is not to set any and is therefore dependant
      on the daemon default.
 
+* `snmp['snmpd']['pass']`
+  - Pass-through scripts as { oid => script } pairs.  Defaults to an empty hash.
+
+* `snmp['snmpd']['pass_persist']`
+  - Persistent pass-through scripts as { oid => script } pairs.  Defaults to an empty hash.
+
 * `snmp['snmpd']['snmpd_run']`
   - snmpd control (default of "yes" means start daemon)
 
