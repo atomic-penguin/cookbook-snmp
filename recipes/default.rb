@@ -37,10 +37,11 @@ node['snmp']['groups']['v1'].each_key { |key| groupnames << key }
 node['snmp']['groups']['v2c'].each_key { |key| groupnames << key }
 groupnames = groupnames.uniq
 
-template '/etc/snmp/snmpd.conf' do
-  mode 00600
-  owner 'root'
-  group 'root'
+template node['snmp']['conffile'] do
+  source 'snmpd.conf.erb'
+  mode node['snmp']['conf_mode']
+  owner node['snmp']['conf_owner']
+  group node['snmp']['conf_group']
   variables(groups: groupnames)
   notifies :restart, "service[#{node['snmp']['service']}]"
 end
