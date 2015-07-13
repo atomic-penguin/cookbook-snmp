@@ -39,7 +39,7 @@ groupnames = groupnames.uniq
 
 template node['snmp']['conffile'] do
   source 'snmpd.conf.erb'
-  mode node['snmp'][['conf_mode']
+  mode node['snmp']['conf_mode']
   owner node['snmp']['conf_owner']
   group node['snmp']['conf_group']
   variables(groups: groupnames)
