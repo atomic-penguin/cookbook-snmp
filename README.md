@@ -30,7 +30,7 @@ these following attributes to best suit your own environment.
 * `snmp['conf_mode']`
   - SNMP configuration file mode, default is 0600.
 
-* `snmp['conf_user']`
+* `snmp['conf_owner']`
   - SNMP configuration file owner, default is 'root'.
 
 * `snmp['conf_group']`
