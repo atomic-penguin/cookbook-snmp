@@ -24,6 +24,18 @@ manufactured hardware is detected by Ohai.
 Notable overridable attributes are as follows.  It is recommended to override
 these following attributes to best suit your own environment.
 
+* `snmp['conffile']`
+  - SNMP configuration location, default is "/etc/snmp/snmpd.conf". 
+
+* `snmp['conf_mode']`
+  - SNMP configuration file mode, default is 0600.
+
+* `snmp['conf_user']`
+  - SNMP configuration file owner, default is 'root'.
+
+* `snmp['conf_group']`
+  - SNMP configuration file group, default is 'root'.
+
 * `snmp['agentAddress']`
   - SNMP Listening address, default is "udp:161". See `man 8 snmpd`,
     section LISTENING ADDRESSES for further details.
