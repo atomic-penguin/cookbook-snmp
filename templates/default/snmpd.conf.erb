@@ -173,6 +173,9 @@ trapsink <%= trapsink %>
 <% if node['snmp']['snmpd']['trapd_run'] == "yes" %>
 master agentx
 <% end %>
+<% if node['snmp']['snmpd']['agentxsocket'] != "no" %>
+agentxsocket <%= node['snmp']['snmpd']['agentxsocket'] %>
+<% end %>
 
 ###############################################################################
 # Extend Section

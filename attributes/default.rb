@@ -65,6 +65,7 @@ default['snmp']['disks'] = []
 default['snmp']['load_average'] = []
 default['snmp']['extend_scripts'] = {}
 
+
 # Debian default file options
 default['snmp']['snmpd']['mibdirs'] = '/usr/share/snmp/mibs'
 default['snmp']['snmpd']['mibs'] = nil
@@ -75,3 +76,4 @@ default['snmp']['snmpd']['snmpd_opts'] = '-Lsd -Lf /dev/null -u snmp -g snmp -I 
 default['snmp']['snmpd']['trapd_run'] = 'no'
 default['snmp']['snmpd']['trapd_opts'] = '-Lsd -p /var/run/snmptrapd.pid'
 default['snmp']['snmpd']['snmpd_compat'] = 'yes'
+default['snmp']['snmpd']['agentxsocket'] = 'no'
