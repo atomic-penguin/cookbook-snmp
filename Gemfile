@@ -6,7 +6,7 @@
 
 source 'https://rubygems.org'
 
-gem 'tomlrb'
+gem 'community_cookbook_releaser'
 gem 'rake'
 gem 'stove'
-gem 'community_cookbook_releaser'
+gem 'tomlrb'

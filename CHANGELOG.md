@@ -1,8 +1,16 @@
 snmp cookbook CHANGELOG
 =======================
+v5.0.0
+------
+@florian-asche
+* Cleanup configuration variables
+* Fixed several bugs
+* Added default configuration file template for rhel and auto restart for changes of those
+* Added some missing variables
+* Improved documentation
+
 v4.0.2
 ------
-
 @floored1585
 * Added pass and pass_persist attributes
 
@@ -16,7 +24,6 @@ v4.0.1
 
 v4.0.0
 ------
-
   *BREAKING CHANGE*
   * Allow multiple sources and groups
     - Deprecate sources & sources6 keys
@@ -28,12 +35,10 @@ v4.0.0
 
 v3.0.1
 ------
-
   * Missing newline in template, issue #28 reported by @indigo423
 
 v3.0.0
 ------
-
   @atomic-penguin
   * Update build files, and rubocopped.
 
@@ -51,7 +56,6 @@ Breaking changes:
 
 v2.0.0
 ------
-
   @MrMMorris
   * Add load average checks.
 
@@ -64,7 +68,6 @@ Breaking changes:
 
 v1.1.0
 ------
-
   @slashterix
   * Use default level over set #9
 
@@ -86,7 +89,6 @@ v1.1.0
 
 v1.0.0
 ------
-
   Add snmptrapd recipe, and add RHEL support.
   Template debian files.
   Add test-kitchen skeleton.
@@ -96,14 +98,12 @@ v1.0.0
 
 v0.4.0
 ------
-
   Add necessary setup for the HP System Management Homepage to be able to poll via @tas50
   Add Suse support via @jackl0phty
   FC043: Prefer new notification syntax: ./recipes/default.rb:38
 
 v0.3.1
 ------
-
 Fix Gemfile for Travis.
 
 Foodcritic warnings resolved
@@ -112,7 +112,6 @@ Foodcritic warnings resolved
 
 v0.3.0
 ------
-
 Merge pull request #1 from gustavowt/master
 
 * Ubuntu package name fixes
@@ -130,17 +129,14 @@ Foodcritic warnings resolved
 
 v0.2.0
 ------
-
 Refactor SNMP cookbook
 
 v0.1.0
 ------
-
 * Add Getopt::Declare dependency
 * Update metadata
 * Update documentation
 
 v0.0.1
 ------
-
 Add snmp cookbook.

@@ -18,12 +18,12 @@
 #
 
 # snmptrapd options
-case node['platform_family']
-when 'rhel'
-  default['snmp']['snmptrapd']['service'] = 'snmptrapd'
-else
-  default['snmp']['snmptrapd']['service'] = node['snmp']['service']
-end
+default['snmp']['snmptrapd']['service'] = case node['platform_family']
+                                          when 'rhel'
+                                            'snmptrapd'
+                                          else
+                                            node['snmp']['service']
+                                          end
 default['snmp']['snmptrapd']['traphandle'] = 'default /usr/sbin/snmptthandler'
 default['snmp']['snmptrapd']['disableAuthorization'] = 'yes'
 default['snmp']['snmptrapd']['donotlogtraps'] = 'yes'

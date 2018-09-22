@@ -22,10 +22,21 @@ node['snmp']['packages'].each do |snmppkg|
 end
 
 template '/etc/default/snmpd' do
-  mode 0644
+  source 'snmpd_default.debian.erb'
+  mode '0644'
   owner 'root'
   group 'root'
-  only_if { node['platform_family'] == 'debian' }
+  notifies :restart, "service[#{node['snmp']['service']}]"
+  only_if { node['platform_family'] == 'debian' || node['platform_family'] == 'amazon' }
+end
+
+template '/etc/sysconfig/snmpd' do
+  source 'snmpd_default.rhel.erb'
+  mode '0644'
+  owner 'root'
+  group 'root'
+  notifies :restart, "service[#{node['snmp']['service']}]"
+  only_if { node['platform_family'] == 'rhel' }
 end
 
 service node['snmp']['service'] do
@@ -33,15 +44,15 @@ service node['snmp']['service'] do
 end
 
 groupnames = []
-node['snmp']['groups']['v1'].each_key { |key| groupnames << key }
-node['snmp']['groups']['v2c'].each_key { |key| groupnames << key }
+node['snmp']['snmpd']['groups']['v1'].each_key { |key| groupnames << key }
+node['snmp']['snmpd']['groups']['v2c'].each_key { |key| groupnames << key }
 groupnames = groupnames.uniq
 
-template node['snmp']['conffile'] do
+template node['snmp']['snmpd']['conffile'] do
   source 'snmpd.conf.erb'
-  mode node['snmp']['conf_mode']
-  owner node['snmp']['conf_owner']
-  group node['snmp']['conf_group']
+  mode node['snmp']['snmpd']['conf_mode']
+  owner node['snmp']['snmpd']['conf_owner']
+  group node['snmp']['snmpd']['conf_group']
   variables(groups: groupnames)
   notifies :restart, "service[#{node['snmp']['service']}]"
 end

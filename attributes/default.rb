@@ -17,13 +17,22 @@
 # limitations under the License.
 #
 
+# family specific config
 case node['platform_family']
 when 'rhel'
   default['snmp']['packages'] = %w(net-snmp net-snmp-utils)
+  default['snmp']['snmpd']['snmpd_opts'] = '-LS0-5d -Lf /dev/null -p /var/run/snmpd.pid'
 when 'debian'
   default['snmp']['packages'] = %w(snmp snmpd)
+  default['snmp']['snmpd']['snmpd_run'] = 'yes'
+  default['snmp']['snmpd']['snmpd_opts'] = '-Lsd -Lf /dev/null -u snmp -g snmp -I -smux -p /var/run/snmpd.pid'
+  # default['snmp']['snmptrapd']['trapd_run'] = 'no'
+  default['snmp']['snmptrapd']['trapd_opts'] = '-Lsd -p /var/run/snmptrapd.pid'
+  default['snmp']['snmpd']['snmpd_compat'] = 'yes'
 when 'suse'
   default['snmp']['packages'] = %w(net-snmp)
+when 'fedora'
+  default['snmp']['packages'] = %w(net-snmp net-snmp-utils)
 else
   default['snmp']['packages'] = %w(net-snmp net-snmp-utils)
 end
@@ -32,46 +41,47 @@ end
 # redhat, centos, fedora, scientific, debian, ubuntu
 default['snmp']['service'] = 'snmpd'
 
-default['snmp']['conffile'] = '/etc/snmp/snmpd.conf'
-default['snmp']['conf_owner'] = 'root'
-default['snmp']['conf_group'] = 'root'
-default['snmp']['conf_mode'] = 0600
-default['snmp']['agentAddress'] = 'udp:161'
-default['snmp']['agentAddress6'] = 'udp6:161'
-default['snmp']['community'] = 'public'
-default['snmp']['sec_name'] = { 'notConfigUser' => %w(default) }
-default['snmp']['sec_name6'] = { 'notConfigUser' => %w(default) }
-default['snmp']['groups']['v1'] = { 'notConfigGroup' => %w(notConfigUser) }
-default['snmp']['groups']['v2c'] = { 'notConfigGroup' => %w(notConfigUser) }
-default['snmp']['syslocationVirtual'] = 'Virtual Server'
-default['snmp']['syslocationPhysical'] = 'Server Room'
-default['snmp']['syscontact'] = 'Root <root@localhost>'
-default['snmp']['sysname'] = node['fqdn']
-default['snmp']['full_systemview'] = false
-default['snmp']['additional_oids'] = nil # Might be String or Array of Strings
-default['snmp']['trapcommunity'] = 'public'
-default['snmp']['trapsinks'] = []
-default['snmp']['process_monitoring']['proc'] = []
-default['snmp']['process_monitoring']['procfix'] = []
-default['snmp']['disman_events']['enable'] = false
-default['snmp']['disman_events']['user'] = 'disman_events'
-default['snmp']['disman_events']['password'] = 'disman_password'
-default['snmp']['disman_events']['linkUpDownNotifications'] = 'yes'
-default['snmp']['disman_events']['defaultMonitors'] = 'yes'
-default['snmp']['disman_events']['monitors'] = []
-default['snmp']['include_all_disks'] = false
-default['snmp']['all_disk_min'] = 100    # 100K
-default['snmp']['disks'] = []
-default['snmp']['load_average'] = []
-default['snmp']['extend_scripts'] = {}
+# Global snmp config
+default['snmp']['mibdirs'] = '/usr/share/snmp/mibs'
+default['snmp']['mibs'] = nil
 
-# Debian default file options
-default['snmp']['snmpd']['mibdirs'] = '/usr/share/snmp/mibs'
-default['snmp']['snmpd']['mibs'] = nil
+# snmpd - basis
+default['snmp']['snmpd']['conffile'] = '/etc/snmp/snmpd.conf'
+default['snmp']['snmpd']['conf_owner'] = 'root'
+default['snmp']['snmpd']['conf_group'] = 'root'
+default['snmp']['snmpd']['conf_mode'] = '0600'
+
+# snmpd - inside config
+default['snmp']['snmpd']['agentAddress'] = 'udp:161'
+default['snmp']['snmpd']['agentAddress6'] = 'udp6:161'
+default['snmp']['snmpd']['community'] = 'public'
+default['snmp']['snmpd']['sec_name'] = { 'notConfigUser' => %w(default) }
+default['snmp']['snmpd']['sec_name6'] = { 'notConfigUser' => %w(default) }
+default['snmp']['snmpd']['groups']['v1'] = { 'notConfigGroup' => %w(notConfigUser) }
+default['snmp']['snmpd']['groups']['v2c'] = { 'notConfigGroup' => %w(notConfigUser) }
+default['snmp']['snmpd']['full_systemview'] = false
+default['snmp']['snmpd']['additional_oids'] = nil # Might be String or Array of Strings
+default['snmp']['snmpd']['syslocationVirtual'] = 'Virtual Server'
+default['snmp']['snmpd']['syslocationPhysical'] = 'Server Room'
+default['snmp']['snmpd']['syscontact'] = 'Root <root@localhost>'
+default['snmp']['snmpd']['sysname'] = node['fqdn']
 default['snmp']['snmpd']['pass'] = {}
 default['snmp']['snmpd']['pass_persist'] = {}
-default['snmp']['snmpd']['snmpd_run'] = 'yes'
-default['snmp']['snmpd']['snmpd_opts'] = '-Lsd -Lf /dev/null -u snmp -g snmp -I -smux -p /var/run/snmpd.pid'
-default['snmp']['snmpd']['trapd_run'] = 'no'
-default['snmp']['snmpd']['trapd_opts'] = '-Lsd -p /var/run/snmptrapd.pid'
-default['snmp']['snmpd']['snmpd_compat'] = 'yes'
+default['snmp']['snmpd']['process_monitoring']['proc'] = []
+default['snmp']['snmpd']['process_monitoring']['procfix'] = []
+default['snmp']['snmpd']['include_all_disks'] = false
+default['snmp']['snmpd']['all_disk_min'] = 100    # 100K
+default['snmp']['snmpd']['disks'] = []
+default['snmp']['snmpd']['ignoredisks'] = []
+default['snmp']['snmpd']['skipNFSInHostResources'] = nil
+default['snmp']['snmpd']['load_average'] = []
+default['snmp']['snmpd']['trapsinks'] = []
+default['snmp']['snmptrapd']['trapcommunity'] = 'public'
+default['snmp']['snmptrapd']['trapd_run'] = 'no'
+default['snmp']['snmpd']['extend_scripts'] = {}
+default['snmp']['snmpd']['disman_events']['enable'] = false
+default['snmp']['snmpd']['disman_events']['user'] = 'disman_events'
+default['snmp']['snmpd']['disman_events']['password'] = 'disman_password'
+default['snmp']['snmpd']['disman_events']['linkUpDownNotifications'] = 'yes'
+default['snmp']['snmpd']['disman_events']['defaultMonitors'] = 'yes'
+default['snmp']['snmpd']['disman_events']['monitors'] = []

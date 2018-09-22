@@ -1,0 +1,5 @@
+# snmpd command line options
+# '-f' is implicitly added by snmpd systemd unit file
+<% unless node['snmp']['snmpd']['snmpd_opts'].empty? %>
+OPTIONS="<%= node['snmp']['snmpd']['snmpd_opts'] %>"
+<% end %>

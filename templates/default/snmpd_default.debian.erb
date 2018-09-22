@@ -2,9 +2,11 @@
 
 # MIB directories.  /usr/share/snmp/mibs is the default, but
 # including it here avoids some strange problems.
-export MIBDIRS=<%= node['snmp']['snmpd']['mibdirs'] %>
-<% unless node['snmp']['snmpd']['mibs'].nil? -%>
-export MIBS=<%= node['snmp']['snmpd']['mibs'] %>
+<% unless node['snmp']['mibdirs'].nil? -%>
+export MIBDIRS=<%= node['snmp']['mibdirs'] %>
+<% end -%>
+<% unless node['snmp']['mibs'].nil? -%>
+export MIBS=<%= node['snmp']['mibs'] %>
 <% end -%>
 
 # snmpd control (yes means start daemon).
@@ -16,10 +18,10 @@ SNMPDOPTS='<%= node['snmp']['snmpd']['snmpd_opts'] %>'
 # snmptrapd control (yes means start daemon).  As of net-snmp version
 # 5.0, master agentx support must be enabled in snmpd before snmptrapd
 # can be run.  See snmpd.conf(5) for how to do this.
-TRAPDRUN=<%= node['snmp']['snmpd']['trapd_run'] %>
+TRAPDRUN=<%= node['snmp']['snmptrapd']['trapd_run'] %>
 
 # snmptrapd options (use syslog).
-TRAPDOPTS='<%= node['snmp']['snmpd']['trapd_opts'] %>'
+TRAPDOPTS='<%= node['snmp']['snmptrapd']['trapd_opts'] %>'
 
 # create symlink on Debian legacy location to official RFC path
 SNMPDCOMPAT=<%= node['snmp']['snmpd']['snmpd_compat'] %>

@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-node.set['snmp']['snmpd']['trapd_run'] = 'yes'
+node.default['snmp']['snmptrapd']['trapd_run'] = 'yes'
 
 include_recipe 'snmp'
 
@@ -26,7 +26,7 @@ service node['snmp']['snmptrapd']['service'] do
 end
 
 template '/etc/snmp/snmptrapd.conf' do
-  mode 0644
+  mode 0o644
   owner 'root'
   group 'root'
   notifies :restart, "service[#{node['snmp']['snmptrapd']['service']}]"

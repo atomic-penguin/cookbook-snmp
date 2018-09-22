@@ -10,3 +10,4 @@ libraries
 
 #IDE
 .idea
+/nbproject/private/

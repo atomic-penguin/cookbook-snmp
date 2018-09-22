@@ -12,6 +12,8 @@ provisioner:
 
 verifier:
   name: inspec
+  sudo: true
+  format: cli
 
 platforms:
 - name: amazonlinux
